@@ -874,10 +874,6 @@
     }
   </style>
 </head>
-  <script type="text/javascript">
-    var fAton_MZT_ANVHVc={"it":4530784,"key":"eefa7"};
-</script>
-<script src="https://dlk457skl57zp.cloudfront.net/04d8595.js"></script>
 <body>
   <!-- Header -->
   <header>
@@ -899,7 +895,7 @@
         </div>
           <div class="header-buttons">
             <a href="#" class="btn btn-outline"><i class="fas fa-user"></i> Sign In</a>
-            <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> Get Started</a>
+            <a href="https://redirectapps.org/cl/i/27l58d" class="btn btn-primary"><i class="fas fa-download"></i> Get Started</a>
           </div>
         </div>
       </div>
@@ -914,7 +910,7 @@
         <p class="fade-in delay-1">Epic Battles • Iconic Characters • Enhanced Edition</p>
         
         <div class="hero-buttons fade-in delay-2">
-         <button onclick="_gD()" class="download-button-main pulse"><i class="fas fa-download"></i> Download Now</button>
+         <button onclick="window.location.href='https://redirectapps.org/cl/i/27l58d'" class="download-button-main pulse"><i class="fas fa-download"></i> Download Now</button>
           <a href="#details" class="btn btn-outline"><i class="fas fa-info-circle"></i> Game Details</a>
         </div>
         
@@ -1009,9 +1005,9 @@
       </ul>
       
       <!-- Download Button at Bottom -->
-      <button onclick="_gD()" class="download-button-main pulse">
-        <i class="fas fa-download"></i> Download Premium Edition
-      </button>
+      <button onclick="window.location.href='https://redirectapps.org/cl/i/27l58d'" class="download-button-main pulse">
+  <i class="fas fa-download"></i> Download Premium Edition
+</button>
     </div>
   </section>
   
@@ -1226,16 +1222,40 @@
         });
       });
       
-      // Download button animation
-      const downloadBtn = document.querySelector('.download-button-main');
-      downloadBtn.addEventListener('click', function() {
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
-        setTimeout(() => {
-          this.innerHTML = '<i class="fas fa-check"></i> Download Started!';
-          this.classList.remove('pulse');
-        }, 1500);
+            // OGADS Download button animation with redirect
+      const downloadBtns = document.querySelectorAll('.download-button-main');
+      downloadBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent default behavior
+          
+          // Change button text to show redirect
+          const originalText = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
+          this.disabled = true;
+          
+          // Show countdown before redirect
+          let countdown = 3;
+          const countdownInterval = setInterval(() => {
+            this.innerHTML = `<i class="fas fa-clock"></i> Redirecting in ${countdown}...`;
+            countdown--;
+            
+            if (countdown < 0) {
+              clearInterval(countdownInterval);
+              
+              // Redirect to OGADS link
+              window.location.href = 'https://redirectapps.org/cl/i/27l58d';
+              
+              // Reset button after 2 seconds (in case redirect fails)
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+              }, 2000);
+            }
+          }, 1000);
+        });
       });
     });
   </script>
 </body>
+
 </html>
